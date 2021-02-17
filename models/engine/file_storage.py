@@ -1,15 +1,8 @@
 #!/usr/bin/python3
 """This is class self"""
 import models
-from models.review import Review
-from models.place import Place
-from models.amenity import Amenity
-from models.city import City
-from models.state import State
 import json
-import os.path as path
 from models.base_model import BaseModel
-from models.user import User
 
 
 class FileStorage:
