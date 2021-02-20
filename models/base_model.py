@@ -1,30 +1,64 @@
 #!/usr/bin/python3
-"""The class"""
-import uuid
+"""This is class Base Model"""
 from datetime import datetime
+import json
+import models
+import uuid
 
 
 class BaseModel:
-    """Class BaseModel"""
+    """class base
+    """
+
     format_date = '%Y-%m-%dT%H:%M:%S.%f'
 
-    def __init__(self):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-    
+    def __init__(self, *args, **kwargs):
+        """Initializing public attributes in the class
+        id = contains unique identifier
+        created_at = date time of object
+        updated_at = update date time of object
+        """
+
+        if kwargs:
+            for key, value in kwargs.items():
+                if 'created_at' == key:
+                    self.__dict__['created_at'] = datetime.strptime(
+                                kwargs.get('created_at'), self.format_date)
+                elif 'updated_at' == key:
+                    self.__dict__['updated_at'] = datetime.strptime(
+                                kwargs.get('updated_at'), self.format_date)
+                elif '__class__' == keys:
+                    pass
+                else:
+                    self.__dict__[key] = value
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
+
     def __str__(self):
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        """
+        Returns:
+            [str]: [information of the class]
+        """
+        return "[{}] ({}) {}".format(
+                                     type(self).__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
+        """Initializing de update
+        """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
-        dict_ = {}
-        dict_.update({'__class__': type(self).__name__})
-        for key in self.__dict__:
-            if key == ['updated_at', 'created_at']:
-                dict_.update({key: datetime.isoformat(getattr(self, key))})
-            else:
-                dict_.update({key: getattr(self, key)})
-        return dict_
+        """
+        Returns:
+            a_dict: containg all information of the class
+        """
+        new = dict(self.__dict__)
+        new['__class__'] = type(self).__name__
+        new['created_at'] = new['created_at'].strftime(self.format_date)
+        new['updated_at'] = new['updated_at'].strftime(self.format_date)
+        return new
