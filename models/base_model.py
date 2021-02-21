@@ -50,16 +50,13 @@ class BaseModel:
 
         self.updated_at = datetime.now()
 
-	def to_dict(self):
+    def to_dict(self):
         """
         Returns:
             a_dict: containg all information of the class
         """
-        cpy_dict = dict(self.__dict__)
-        cpy_dict['__class__'] = type(self).__name__
-
-        for key, value in cpy_dict.items():
-            if isinstance(value, datetime):
-                cpy_dict[key] = value.strftime(self.format_date)
-
-        return cpy_dict
+        new = dict(self.__dict__)
+        new['__class__'] = type(self).__name__
+        new['created_at'] = new['created_at'].strftime(self.format_date)
+        new['updated_at'] = new['updated_at'].strftime(self.format_date)
+        return new
