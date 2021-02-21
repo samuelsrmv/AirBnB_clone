@@ -2,7 +2,6 @@
 """The console"""
 import cmd
 
-
 class HBNBCommand(cmd.Cmd):
     """[This is the htbn cls]
     """
@@ -20,4 +19,5 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
+    """main entry"""
     HBNBCommand().cmdloop()
