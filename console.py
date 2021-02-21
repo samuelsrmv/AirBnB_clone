@@ -2,6 +2,7 @@
 """The console"""
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
     """[This is the htbn cls]
     """
