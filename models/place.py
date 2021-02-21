@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-"""class palce"""
+"""This is the Place class"""
 from models.base_model import BaseModel
 
 
-class Palce(BaseModel):
-    city.id = ''
+class Place(BaseModel):
+    """[sumamry]
+    """
+    city_id = ''
     user_id = ''
     name = ''
     description = ''

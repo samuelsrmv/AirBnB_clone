@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""class state"""
+"""This is State class"""
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """class State
+    """[summary]
     """
     name = ''
     pass
