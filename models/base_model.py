@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """This is class Base Model"""
 from datetime import datetime
@@ -23,9 +22,11 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if 'created_at' == key:
-                    self.__dict__['created_at'] = datetime.strptime(kwargs.get('created_at'), self.format_date)
+                    self.__dict__['created_at'] = datetime.strptime(
+                        kwargs.get('created_at'), self.format_date)
                 elif 'updated_at' == key:
-                    self.__dict__['updated_at'] = datetime.strptime(kwargs.get('updated_at'), self.format_date)
+                    self.__dict__['updated_at'] = datetime.strptime(
+                        kwargs.get('updated_at'), self.format_date)
                 elif '__class__' == keys:
                     pass
                 else:
@@ -41,7 +42,8 @@ class BaseModel:
         Returns:
             [str]: [information of the class]
         """
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(type(self).__name__, self.id,
+                                     self.__dict__)
 
     def save(self):
         """Initializing de update
