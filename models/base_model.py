@@ -7,56 +7,58 @@ import uuid
 
 
 class BaseModel:
-    """class base
-    """
+	"""class base
+	"""
 
-    format_date = '%Y-%m-%dT%H:%M:%S.%f'
+	format_date = '%Y-%m-%dT%H:%M:%S.%f'
 
-    def __init__(self, *args, **kwargs):
-        """Initializing public attributes in the class
-        id = contains unique identifier
-        created_at = date time of object
-        updated_at = update date time of object
-        """
+	def __init__(self, *args, **kwargs):
+		"""Initializing public attributes in the class
+		id = contains unique identifier
+		created_at = date time of object
+		updated_at = update date time of object
+		"""
 
-        if kwargs:
-            for key, value in kwargs.items():
-                if 'created_at' == key:
-                    self.__dict__['created_at'] = datetime.strptime(
-                        kwargs.get('created_at'), self.format_date)
-                elif 'updated_at' == key:
-                    self.__dict__['updated_at'] = datetime.strptime(
-                        kwargs.get('updated_at'), self.format_date)
-                elif '__class__' == key:
-                    pass
-                else:
-                    self.__dict__[key] = value
-        else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+		if kwargs:
+			for key, value in kwargs.items():
+				if 'created_at' == key:
+					self.__dict__['created_at'] = datetime.strptime(
+						kwargs.get('created_at'), self.format_date)
+				elif 'updated_at' == key:
+					self.__dict__['updated_at'] = datetime.strptime(
+						kwargs.get('updated_at'), self.format_date)
+				elif '__class__' == key:
+					pass
+				else:
+					self.__dict__[key] = value
+		else:
+			self.id = str(uuid.uuid4())
+			self.created_at = datetime.now()
+			self.updated_at = datetime.now()
+			models.storage.new(self)
 
-    def __str__(self):
-        """
-        Returns:
-            [str]: [information of the class]
-        """
-        return "[{}] ({}) {}".format(type(self).__name__, self.id,
-                                     self.__dict__)
+	def __str__(self):
+		"""
+		Returns:
+			[str]: [information of the class]
+		"""
+		return "[{}] ({}) {}".format(type(self).__name__, self.id,
+									 self.__dict__)
 
-    def save(self):
-        """Initializing de update
-        """
+	def save(self):
+		"""Initializing de update
+		"""
 
-        self.updated_at = datetime.now()
+		self.updated_at = datetime.now()
+		models.storage.save()
 
-    def to_dict(self):
-        """
-        Returns:
-            a_dict: containg all information of the class
-        """
-        new = dict(self.__dict__)
-        new['__class__'] = type(self).__name__
-        new['created_at'] = new['created_at'].strftime(self.format_date)
-        new['updated_at'] = new['updated_at'].strftime(self.format_date)
-        return new
+	def to_dict(self):
+		"""
+		Returns:
+			a_dict: containg all information of the class
+		"""
+		new = dict(self.__dict__)
+		new['__class__'] = type(self).__name__
+		new['created_at'] = new['created_at'].strftime(self.format_date)
+		new['updated_at'] = new['updated_at'].strftime(self.format_date)
+		return new
