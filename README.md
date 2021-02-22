@@ -19,11 +19,6 @@ $ ./console.py
 `
 (hbnb)
 `
-
-## Environment
-
-Ubuntu 14.04 LTS via Vagrant in VirtualBox and Interpret Python3
-
 ## More Info
 
 -   But also in non-interactive mode
@@ -49,3 +44,8 @@ EOF  help  quit
 (hbnb)
 $
 ```
+
+## Environment
+
+Ubuntu 14.04 LTS via Vagrant in VirtualBox and Interpret Python3
+
