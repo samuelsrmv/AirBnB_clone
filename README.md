@@ -2,7 +2,7 @@
 
 ![Diagrama en blanco](https://user-images.githubusercontent.com/60363879/108719035-1434ae00-74ed-11eb-8240-e76ac30caf0f.png)
 
-##### In this project, we implement the following: #####
+##### In this project it was implemented: #####
 
 - BaseModel class for instantation of AirBnB clone objects
 - User, State, City, Place, Amenity, Review subclasses that inherit from BaseModel
@@ -26,7 +26,7 @@ Ubuntu 14.04 LTS via Vagrant in VirtualBox and Interpret Python3
 
 ## More Info
 
--   But also in non-interactive mode: (like the Shell project in C)
+-   But also in non-interactive mode
 
 ```
 $ echo "help" | ./console.py
