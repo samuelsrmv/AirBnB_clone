@@ -38,3 +38,5 @@ $
 
 Ubuntu 14.04 LTS via Vagrant in VirtualBox and Interpret Python3
 
+## Author
+* **Samuel Martinez** - [samuelsrmv](https://github.com/samuelsrmv)
